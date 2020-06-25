@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe
 {
-    partial class Form1
+    partial class frmTicTacToe
     {
         /// <summary>
         /// Required designer variable.
@@ -64,7 +64,7 @@
             this.rbtnX.AutoSize = true;
             this.rbtnX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnX.Location = new System.Drawing.Point(502, 184);
+            this.rbtnX.Location = new System.Drawing.Point(149, 125);
             this.rbtnX.Name = "rbtnX";
             this.rbtnX.Size = new System.Drawing.Size(87, 21);
             this.rbtnX.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.rbtn0.AutoSize = true;
             this.rbtn0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbtn0.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtn0.Location = new System.Drawing.Point(502, 220);
+            this.rbtn0.Location = new System.Drawing.Point(375, 125);
             this.rbtn0.Name = "rbtn0";
             this.rbtn0.Size = new System.Drawing.Size(86, 21);
             this.rbtn0.TabIndex = 2;
@@ -200,11 +200,11 @@
             // lblTicTacToe
             // 
             this.lblTicTacToe.AutoSize = true;
-            this.lblTicTacToe.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTicTacToe.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTicTacToe.ForeColor = System.Drawing.Color.Red;
-            this.lblTicTacToe.Location = new System.Drawing.Point(224, 106);
+            this.lblTicTacToe.Location = new System.Drawing.Point(217, 45);
             this.lblTicTacToe.Name = "lblTicTacToe";
-            this.lblTicTacToe.Size = new System.Drawing.Size(173, 31);
+            this.lblTicTacToe.Size = new System.Drawing.Size(186, 36);
             this.lblTicTacToe.TabIndex = 12;
             this.lblTicTacToe.Text = "Tic-Tac-Toe";
             // 
@@ -213,9 +213,9 @@
             this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReset.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DodgerBlue;
-            this.btnReset.Location = new System.Drawing.Point(386, 486);
+            this.btnReset.Location = new System.Drawing.Point(386, 479);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.Size = new System.Drawing.Size(75, 36);
             this.btnReset.TabIndex = 13;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -231,12 +231,13 @@
             this.lblNotAnyWinner.Size = new System.Drawing.Size(215, 26);
             this.lblNotAnyWinner.TabIndex = 14;
             this.lblNotAnyWinner.Text = "Not any winner   →";
+            this.lblNotAnyWinner.Visible = false;
             // 
-            // Form1
+            // frmTicTacToe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 570);
+            this.ClientSize = new System.Drawing.Size(630, 570);
             this.Controls.Add(this.lblNotAnyWinner);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblTicTacToe);
@@ -252,8 +253,11 @@
             this.Controls.Add(this.rbtnX);
             this.Controls.Add(this.btn00);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Name = "Form1";
-            this.Text = "    ";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "frmTicTacToe";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Tic-Tac-Toe";
             this.ResumeLayout(false);
             this.PerformLayout();
 

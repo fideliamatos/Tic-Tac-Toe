@@ -10,31 +10,36 @@ using System.Windows.Forms;
 
 namespace TicTacToe
 {
-    public partial class Form1 : Form
+    public partial class frmTicTacToe : Form
     {
         int turns = 9;
-        bool isWinner = false;
         string h, v, d, d2, lastWinner;
 
-        public Form1()
+        public frmTicTacToe()
         {
             InitializeComponent();
             rbtnX.Checked = true;
         }
 
-        public void verifyWinner(string h, string v, string d, string d2) 
+        public void changeTurn(Button btn)
         {
-            if (h == "XXX" || h == "000")
-                winGame(btn00, btn01, btn02);
-            else if (v == "XXX" || v == "000")
-                winGame(btn00, btn10, btn20);
-            else if (d == "XXX" || d == "000")
-                winGame(btn00, btn11, btn22);
+            btn.Enabled = false;
+            switch (rbtn0.Checked)
+            {
+                case true:
+                    btn.Text = "0";
+                    rbtnX.Checked = true;
+                    break;
+                case false:
+                    btn.Text = "X";
+                    rbtn0.Checked = true;
+                    break;
+            }
+            turns--;
         }
 
         public void winGame(Button btn1, Button btn2, Button btn3)
         {
-            isWinner = true;
             lastWinner = btn1.Text;
             btn1.BackColor = Color.DarkSeaGreen;
             btn2.BackColor = Color.DarkSeaGreen;
@@ -49,25 +54,11 @@ namespace TicTacToe
             btn20.Enabled = false;
             btn21.Enabled = false;
             btn22.Enabled = false;
-        }
+        }    
 
-        public void changeTurn(Button btn) 
+        public void validateChance()
         {
-            btn.Enabled = false;
-            switch (rbtn0.Checked)
-            {
-                case true:
-                    btn.Text = "0";
-                    rbtnX.Checked = true;
-                    break;
-                case false:
-                    btn.Text = "X";
-                    rbtn0.Checked = true;
-                    break;
-            }
-
-            turns--;
-            if (turns == 0 && !isWinner)
+            if (turns == 0)
                 lblNotAnyWinner.Visible = true;
         }
 
@@ -78,12 +69,13 @@ namespace TicTacToe
             h = btn00.Text + btn01.Text + btn02.Text;
             v = btn00.Text + btn10.Text + btn20.Text;
             d = btn00.Text + btn11.Text + btn22.Text;
-            if (h == "XXX" || h == "000") 
+            if (h == "XXX" || h == "000")
                 winGame(btn00, btn01, btn02);
             else if (v == "XXX" || v == "000")
                 winGame(btn00, btn10, btn20);
             else if (d == "XXX" || d == "000")
                 winGame(btn00, btn11, btn22);
+            else validateChance();
         }
 
         private void btn01_Click(object sender, EventArgs e)
@@ -96,6 +88,7 @@ namespace TicTacToe
                 winGame(btn00, btn01, btn02);
             else if (v == "XXX" || v == "000")
                 winGame(btn01, btn11, btn21);
+            else validateChance();
         }
 
         private void btn02_Click(object sender, EventArgs e)
@@ -111,6 +104,7 @@ namespace TicTacToe
                 winGame(btn02, btn12, btn22);
             else if (d == "XXX" || d == "000")
                 winGame(btn02, btn11, btn20);
+            else validateChance();
         }
 
         private void btn10_Click(object sender, EventArgs e)
@@ -123,6 +117,7 @@ namespace TicTacToe
                 winGame(btn10, btn11, btn12);
             else if (v == "XXX" || v == "000")
                 winGame(btn00, btn10, btn20);
+            else validateChance();
         }
 
         private void btn11_Click(object sender, EventArgs e)
@@ -141,6 +136,7 @@ namespace TicTacToe
                 winGame(btn00, btn11, btn22);
             else if (d2 == "XXX" || d2 == "000")
                 winGame(btn02, btn11, btn20);
+            else validateChance();
         }
 
         private void btn12_Click(object sender, EventArgs e)
@@ -153,12 +149,58 @@ namespace TicTacToe
                 winGame(btn10, btn11, btn12);
             else if (v == "XXX" || v == "000")
                 winGame(btn02, btn12, btn22);
+            else validateChance();
+        }
+
+        
+        private void btn20_Click(object sender, EventArgs e)
+        {
+            changeTurn(btn20);
+
+            h = btn20.Text + btn21.Text + btn22.Text;
+            v = btn00.Text + btn10.Text + btn20.Text;
+            d = btn20.Text + btn11.Text + btn02.Text;
+            if (h == "XXX" || h == "000")
+                winGame(btn20, btn21, btn22);
+            else if (v == "XXX" || v == "000")
+                winGame(btn00, btn10, btn20);
+            else if (d == "XXX" || d == "000")
+                winGame(btn20, btn11, btn02);
+            else validateChance();
+        }
+
+        private void btn21_Click(object sender, EventArgs e)
+        {
+            changeTurn(btn21);
+
+            h = btn20.Text + btn21.Text + btn22.Text;
+            v = btn01.Text + btn11.Text + btn21.Text;
+            if (h == "XXX" || h == "000")
+                winGame(btn20, btn21, btn22);
+            else if (v == "XXX" || v == "000")
+                winGame(btn01, btn11, btn21);
+            else validateChance();
+        }
+
+        private void btn22_Click(object sender, EventArgs e)
+        {
+            changeTurn(btn22);
+
+            h = btn20.Text + btn21.Text + btn22.Text;
+            v = btn02.Text + btn12.Text + btn22.Text;
+            d = btn00.Text + btn11.Text + btn22.Text;
+            if (h == "XXX" || h == "000")
+                winGame(btn20, btn21, btn22);
+            else if (v == "XXX" || v == "000")
+                winGame(btn02, btn12, btn22);
+            else if (d == "XXX" || d == "000")
+                winGame(btn00, btn11, btn22);
+            else validateChance();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             turns = 9;
-            isWinner = false;
             lblNotAnyWinner.Visible = false;
 
             btn00.Text = "";
@@ -195,48 +237,6 @@ namespace TicTacToe
                 rbtnX.Checked = true;
             else if (lastWinner == "0")
                 rbtn0.Checked = true;
-        }
-
-        private void btn20_Click(object sender, EventArgs e)
-        {
-            changeTurn(btn20);
-
-            h = btn20.Text + btn21.Text + btn22.Text;
-            v = btn00.Text + btn10.Text + btn20.Text;
-            d = btn20.Text + btn11.Text + btn02.Text;
-            if (h == "XXX" || h == "000")
-                winGame(btn20, btn21, btn22);
-            else if (v == "XXX" || v == "000")
-                winGame(btn00, btn10, btn20);
-            else if (d == "XXX" || d == "000")
-                winGame(btn20, btn11, btn02);
-        }
-
-        private void btn21_Click(object sender, EventArgs e)
-        {
-            changeTurn(btn21);
-
-            h = btn20.Text + btn21.Text + btn22.Text;
-            v = btn01.Text + btn11.Text + btn21.Text;
-            if (h == "XXX" || h == "000")
-                winGame(btn20, btn21, btn22);
-            else if (v == "XXX" || v == "000")
-                winGame(btn01, btn11, btn21);
-        }
-
-        private void btn22_Click(object sender, EventArgs e)
-        {
-            changeTurn(btn22);
-
-            h = btn20.Text + btn21.Text + btn22.Text;
-            v = btn02.Text + btn12.Text + btn22.Text;
-            d = btn00.Text + btn11.Text + btn22.Text;
-            if (h == "XXX" || h == "000")
-                winGame(btn20, btn21, btn22);
-            else if (v == "XXX" || v == "000")
-                winGame(btn02, btn12, btn22);
-            else if (d == "XXX" || d == "000")
-                winGame(btn00, btn11, btn22);
         }
     }
 }
