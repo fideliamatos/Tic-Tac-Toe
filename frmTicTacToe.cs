@@ -12,7 +12,7 @@ namespace TicTacToe
 {
     public partial class frmTicTacToe : Form
     {
-        int turns = 9;
+        int opportunities = 9;
         string h, v, d, d2, lastWinner;
 
         public frmTicTacToe()
@@ -35,12 +35,17 @@ namespace TicTacToe
                     rbtn0.Checked = true;
                     break;
             }
-            turns--;
+            opportunities--;
         }
 
         public void winGame(Button btn1, Button btn2, Button btn3)
         {
             lastWinner = btn1.Text;
+            if (lastWinner == "X")
+                lblGamesX.Text = (int.Parse(lblGamesX.Text) + 1).ToString(); 
+            else
+                lblGames0.Text = (int.Parse(lblGames0.Text) + 1).ToString();
+
             btn1.BackColor = Color.DarkSeaGreen;
             btn2.BackColor = Color.DarkSeaGreen;
             btn3.BackColor = Color.DarkSeaGreen;
@@ -56,9 +61,9 @@ namespace TicTacToe
             btn22.Enabled = false;
         }    
 
-        public void validateChance()
+        public void validateOpportunities()
         {
-            if (turns == 0)
+            if (opportunities == 0)
                 lblNotAnyWinner.Visible = true;
         }
 
@@ -75,7 +80,7 @@ namespace TicTacToe
                 winGame(btn00, btn10, btn20);
             else if (d == "XXX" || d == "000")
                 winGame(btn00, btn11, btn22);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn01_Click(object sender, EventArgs e)
@@ -88,7 +93,7 @@ namespace TicTacToe
                 winGame(btn00, btn01, btn02);
             else if (v == "XXX" || v == "000")
                 winGame(btn01, btn11, btn21);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn02_Click(object sender, EventArgs e)
@@ -104,7 +109,7 @@ namespace TicTacToe
                 winGame(btn02, btn12, btn22);
             else if (d == "XXX" || d == "000")
                 winGame(btn02, btn11, btn20);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn10_Click(object sender, EventArgs e)
@@ -117,7 +122,7 @@ namespace TicTacToe
                 winGame(btn10, btn11, btn12);
             else if (v == "XXX" || v == "000")
                 winGame(btn00, btn10, btn20);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn11_Click(object sender, EventArgs e)
@@ -136,7 +141,7 @@ namespace TicTacToe
                 winGame(btn00, btn11, btn22);
             else if (d2 == "XXX" || d2 == "000")
                 winGame(btn02, btn11, btn20);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn12_Click(object sender, EventArgs e)
@@ -149,7 +154,7 @@ namespace TicTacToe
                 winGame(btn10, btn11, btn12);
             else if (v == "XXX" || v == "000")
                 winGame(btn02, btn12, btn22);
-            else validateChance();
+            else validateOpportunities();
         }
 
         
@@ -166,7 +171,7 @@ namespace TicTacToe
                 winGame(btn00, btn10, btn20);
             else if (d == "XXX" || d == "000")
                 winGame(btn20, btn11, btn02);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn21_Click(object sender, EventArgs e)
@@ -179,7 +184,7 @@ namespace TicTacToe
                 winGame(btn20, btn21, btn22);
             else if (v == "XXX" || v == "000")
                 winGame(btn01, btn11, btn21);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btn22_Click(object sender, EventArgs e)
@@ -195,12 +200,12 @@ namespace TicTacToe
                 winGame(btn02, btn12, btn22);
             else if (d == "XXX" || d == "000")
                 winGame(btn00, btn11, btn22);
-            else validateChance();
+            else validateOpportunities();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            turns = 9;
+            opportunities = 9;
             lblNotAnyWinner.Visible = false;
 
             btn00.Text = "";
